@@ -145,4 +145,57 @@ document.addEventListener('DOMContentLoaded', () => {
   /* END: HAMBURGER MENU */
 
 
+  /* ==============================================================
+     HAMBURGER MENU — TAB SWITCHING LINKS
+     ──────────────────────────────────────
+     This block makes the buttons inside the hamburger menu
+     switch tabs, exactly like the nav bar buttons do.
+
+     It also closes the hamburger menu automatically after
+     the visitor picks a link — so they land on the new page
+     with the menu already closed.
+
+     You do NOT need to edit this section when adding new links.
+     Just add the button in index.html and this handles the rest.
+  ============================================================== */
+
+  /* Find every button inside the hamburger menu that has a
+     data-page attribute (class="menu-link") */
+  const menuLinks = document.querySelectorAll('.menu-link[data-page]');
+
+  menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+
+      /* Read which page this link should switch to */
+      const target = link.dataset.page;
+
+      /* Switch the nav tabs — remove active from all, add to the matching one */
+      tabs.forEach(t => {
+        if (t.dataset.page === target) {
+          t.classList.add('active');
+        } else {
+          t.classList.remove('active');
+        }
+      });
+
+      /* Switch the pages — hide all, show the matching one */
+      pages.forEach(page => {
+        if (page.id === `page-${target}`) {
+          page.classList.add('active');
+        } else {
+          page.classList.remove('active');
+        }
+      });
+
+      /* Close the hamburger menu after the link is clicked */
+      hamburgerMenu.classList.remove('open');
+      hamburgerBtn.classList.remove('open');
+      hamburgerBtn.setAttribute('aria-expanded', 'false');
+
+    }); /* end menu link click */
+  }); /* end menu links loop */
+
+  /* END: HAMBURGER MENU TAB SWITCHING LINKS */
+
+
 }); /* end DOMContentLoaded */
