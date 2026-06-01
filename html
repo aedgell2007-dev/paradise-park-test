@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║                    PARADISE PARK WEBSITE                     ║
+  ║                        index.html                            ║
+  ╠══════════════════════════════════════════════════════════════╣
+  ║  This is the MAIN FILE of the website. It controls what      ║
+  ║  appears on the page and in what order.                      ║
+  ║                                                              ║
+  ║  The actual colors, fonts, and sizing are controlled in:     ║
+  ║    → css/style.css                                           ║
+  ║                                                              ║
+  ║  The interactive behavior (tab switching, hamburger menu)    ║
+  ║  is controlled in:                                           ║
+  ║    → js/main.js                                              ║
+  ╚══════════════════════════════════════════════════════════════╝
+-->
+<html lang="en">
+<head>
+  <!--
+    ┌─────────────────────────────────────────────────────────────┐
+    │ HEAD SECTION                                                │
+    │ This section is NOT visible on the page. It loads fonts,   │
+    │ stylesheets, and tells the browser basic information about  │
+    │ the site.                                                   │
+    └─────────────────────────────────────────────────────────────┘
+  -->
+
+  <!-- Sets the text encoding — always leave this as-is -->
+  <meta charset="UTF-8" />
+
+  <!-- Makes the site look correct on phones and tablets -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- The text that appears on the browser tab -->
+  <title>Paradise Park</title>
+
+  <!-- Loads the stylesheet (colors, fonts, layout) -->
+  <link rel="stylesheet" href="css/style.css" />
+
+  <!--
+    Loads the two fonts used on this site from Google Fonts
+    (requires an internet connection to display correctly):
+      • Playfair Display — used for the big "Paradise Park" title
+      • Lato             — used for all other text
+    To change fonts, visit fonts.google.com, pick a font, and
+    replace the link below with the one Google provides.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+<!--
+  ┌─────────────────────────────────────────────────────────────┐
+  │ BODY SECTION                                                │
+  │ Everything inside <body> ... </body> is visible on the      │
+  │ page. The sections below appear in top-to-bottom order.     │
+  └─────────────────────────────────────────────────────────────┘
+-->
+
+
+<!-- ============================================================
+     SECTION 1: HEADER
+     ─────────────────
+     This is the large banner at the top of the page.
+     It shows the background image and the "Paradise Park" title.
+
+     HOW TO CHANGE THE BACKGROUND IMAGE:
+       Open css/style.css and look for the line:
+         --header-bg: url('...');
+       Replace the URL with your own image path, for example:
+         --header-bg: url('../images/my-photo.jpg');
+       Then put your image file in the "images" folder.
+============================================================ -->
+<header class="site-header">
+
+  <!-- This dark overlay sits on top of the image so the
+       white title text is always easy to read.
+       Adjust its darkness in css/style.css → .header-overlay -->
+  <div class="header-overlay"></div>
+
+  <!-- The main title text displayed over the header image.
+       To change the text, edit "Paradise Park" below. -->
+  <h1 class="site-title">Paradise Park</h1>
+
+</header>
+<!-- END: HEADER -->
+
+
+<!-- ============================================================
+     SECTION 2: NAVIGATION BAR
+     ──────────────────────────
+     This is the dark bar below the header containing the page tabs.
+     It sticks to the top of the screen when you scroll down.
+
+     HOW TO ADD A NEW TAB:
+       Copy one of the <button> lines below and paste it after
+       the last button. Change the label text AND the data-page
+       value to a short one-word name (no spaces), like:
+         <button class="nav-tab" data-page="gallery">Gallery</button>
+       Then scroll down and add a matching page section.
+       (See "HOW TO ADD A NEW PAGE" further down in this file.)
+============================================================ -->
+<nav class="site-nav">
+  <div class="nav-inner">
+
+    <!-- TAB: Home — links to the section with id="page-home" -->
+    <button class="nav-tab active" data-page="home">Home</button>
+
+    <!-- TAB: Events — links to the section with id="page-events" -->
+    <button class="nav-tab" data-page="events">Events</button>
+
+    <!--
+      ↑ ADD NEW TABS ABOVE THIS LINE
+      Example:
+      <button class="nav-tab" data-page="gallery">Gallery</button>
+    -->
+
+  </div>
+</nav>
+<!-- END: NAVIGATION BAR -->
+
+
+<!-- ============================================================
+     SECTION 3: HOME PAGE
+     ─────────────────────
+     This is the content area shown when the "Home" tab is active.
+     It starts visible by default (class="page active").
+
+     The hamburger menu button lives inside this page, in the
+     top-left corner.
+============================================================ -->
+<main id="page-home" class="page active">
+
+
+  <!-- ----------------------------------------------------------
+       HAMBURGER MENU
+       ──────────────
+       The three-line (☰) button in the top-left of the home page.
+       Clicking it opens a dropdown menu panel.
+
+       HOW TO ADD ITEMS TO THE MENU:
+         Inside <div class="hamburger-menu"> below, add links like:
+           <a href="#">Hours & Pricing</a>
+           <a href="#">Contact Us</a>
+         Or buttons like:
+           <button>Find Us</button>
+         Each item will appear as its own row in the dropdown.
+  ---------------------------------------------------------- -->
+  <div class="hamburger-wrap">
+
+    <!-- The clickable ☰ button — do not change the id="hamburgerBtn" -->
+    <button class="hamburger-btn" id="hamburgerBtn"
+            aria-label="Open menu" aria-expanded="false">
+      <span></span> <!-- top line    -->
+      <span></span> <!-- middle line -->
+      <span></span> <!-- bottom line -->
+    </button>
+
+    <!-- The dropdown panel that opens when ☰ is clicked.
+         Add menu items (links or buttons) between these tags.
+         Do not change id="hamburgerMenu". -->
+    <div class="hamburger-menu" id="hamburgerMenu">
+
+      <!-- ↓ ADD MENU ITEMS HERE ↓ -->
+
+      <!-- ↑ ADD MENU ITEMS HERE ↑ -->
+
+    </div>
+
+  </div>
+  <!-- END: HAMBURGER MENU -->
+
+
+  <!-- ----------------------------------------------------------
+       HOME PAGE CONTENT
+       ─────────────────
+       Add the main body content for the Home page here.
+       Examples: a welcome message, photos, hours, a map, etc.
+  ---------------------------------------------------------- -->
+  <div class="page-content">
+
+    <!-- ↓ ADD HOME PAGE CONTENT HERE ↓ -->
+
+    <!-- ↑ ADD HOME PAGE CONTENT HERE ↑ -->
+
+  </div>
+  <!-- END: HOME PAGE CONTENT -->
+
+
+</main>
+<!-- END: HOME PAGE -->
+
+
+<!-- ============================================================
+     SECTION 4: EVENTS PAGE
+     ───────────────────────
+     This content area is shown when the "Events" tab is clicked.
+     It starts hidden (class="page" without "active").
+     The JavaScript in js/main.js handles showing/hiding pages.
+============================================================ -->
+<main id="page-events" class="page">
+
+  <!-- ----------------------------------------------------------
+       EVENTS PAGE CONTENT
+       ────────────────────
+       Add content for the Events page here.
+       Examples: upcoming events list, calendar, event photos, etc.
+  ---------------------------------------------------------- -->
+  <div class="page-content">
+
+    <!-- ↓ ADD EVENTS PAGE CONTENT HERE ↓ -->
+
+    <!-- ↑ ADD EVENTS PAGE CONTENT HERE ↑ -->
+
+  </div>
+  <!-- END: EVENTS PAGE CONTENT -->
+
+</main>
+<!-- END: EVENTS PAGE -->
+
+
+<!--
+  ============================================================
+  HOW TO ADD A NEW PAGE
+  ──────────────────────
+  1. Add a new tab button in the nav bar above (Section 2).
+     Example: <button class="nav-tab" data-page="gallery">Gallery</button>
+
+  2. Copy the block below and paste it above this comment.
+     Change "pagename" in BOTH places to match your tab's data-page value.
+
+  <main id="page-pagename" class="page">
+    <div class="page-content">
+
+      <!-- ↓ ADD YOUR CONTENT HERE ↓ -->
+
+      <!-- ↑ ADD YOUR CONTENT HERE ↑ -->
+
+    </div>
+  </main>
+
+  That's all — the JavaScript handles the rest automatically.
+  ============================================================
+-->
+
+
+<!-- Loads the JavaScript file — always keep this at the very bottom -->
+<script src="js/main.js"></script>
+
+</body>
+</html>
