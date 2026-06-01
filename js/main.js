@@ -146,39 +146,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
   /* ==============================================================
-     HAMBURGER MENU — TAB SWITCHING LINKS
-     ──────────────────────────────────────
-     This block makes the buttons inside the hamburger menu
-     switch tabs, exactly like the nav bar buttons do.
+     HAMBURGER MENU — HIDDEN PAGE LINKS
+     ────────────────────────────────────
+     This block makes hamburger menu buttons open hidden pages —
+     pages that exist in the code but have no nav bar tab.
 
-     It also closes the hamburger menu automatically after
-     the visitor picks a link — so they land on the new page
-     with the menu already closed.
+     When a menu link is clicked:
+       1. All nav tabs lose their "active" highlight
+          (since hidden pages don't belong to any tab)
+       2. All pages are hidden
+       3. The hidden page matching the link's data-page is shown
+       4. The hamburger menu closes automatically
 
      You do NOT need to edit this section when adding new links.
-     Just add the button in index.html and this handles the rest.
+     Just add the button + hidden page block in index.html.
   ============================================================== */
 
-  /* Find every button inside the hamburger menu that has a
-     data-page attribute (class="menu-link") */
   const menuLinks = document.querySelectorAll('.menu-link[data-page]');
 
   menuLinks.forEach(link => {
     link.addEventListener('click', () => {
 
-      /* Read which page this link should switch to */
       const target = link.dataset.page;
 
-      /* Switch the nav tabs — remove active from all, add to the matching one */
-      tabs.forEach(t => {
-        if (t.dataset.page === target) {
-          t.classList.add('active');
-        } else {
-          t.classList.remove('active');
-        }
-      });
+      /* Step 1: Remove "active" highlight from ALL nav tabs.
+         Hidden pages don't belong to any tab, so none should
+         appear selected while a hidden page is showing. */
+      tabs.forEach(t => t.classList.remove('active'));
 
-      /* Switch the pages — hide all, show the matching one */
+      /* Step 2 & 3: Hide all pages, show the target hidden page */
       pages.forEach(page => {
         if (page.id === `page-${target}`) {
           page.classList.add('active');
@@ -187,7 +183,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      /* Close the hamburger menu after the link is clicked */
+      /* Step 4: Close the hamburger menu */
       hamburgerMenu.classList.remove('open');
       hamburgerBtn.classList.remove('open');
       hamburgerBtn.setAttribute('aria-expanded', 'false');
@@ -195,7 +191,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }); /* end menu link click */
   }); /* end menu links loop */
 
-  /* END: HAMBURGER MENU TAB SWITCHING LINKS */
+  /* END: HAMBURGER MENU HIDDEN PAGE LINKS */
 
 
 }); /* end DOMContentLoaded */
