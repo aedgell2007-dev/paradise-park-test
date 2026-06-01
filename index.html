@@ -139,15 +139,27 @@
        HAMBURGER MENU
        ──────────────
        The three-line (☰) button in the top-left of the home page.
-       Clicking it opens a dropdown menu panel.
+       Clicking it opens a dropdown panel with navigation links.
 
-       HOW TO ADD ITEMS TO THE MENU:
-         Inside <div class="hamburger-menu"> below, add links like:
-           <a href="#">Hours & Pricing</a>
-           <a href="#">Contact Us</a>
-         Or buttons like:
-           <button>Find Us</button>
-         Each item will appear as its own row in the dropdown.
+       HOW THESE LINKS WORK:
+         Each link uses data-page="..." to switch to a tab,
+         exactly the same way the nav bar tabs work.
+         The label between > and </button> is what the visitor sees.
+
+       HOW TO ADD A NEW LINK:
+         Copy one entire block between the dashed copy lines below
+         and paste it directly after the last link block.
+         Then change:
+           • data-page="..."  → the page id you want to go to
+                                 (must match a tab's data-page value)
+           • the label text   → whatever the visitor should see
+
+       HOW TO REMOVE A LINK:
+         Delete everything from one ─── LINK START ─── to its
+         matching ─── LINK END ─── (including both comment lines).
+
+       HOW TO REORDER LINKS:
+         Cut and paste full link blocks up or down.
   ---------------------------------------------------------- -->
   <div class="hamburger-wrap">
 
@@ -160,13 +172,28 @@
     </button>
 
     <!-- The dropdown panel that opens when ☰ is clicked.
-         Add menu items (links or buttons) between these tags.
          Do not change id="hamburgerMenu". -->
     <div class="hamburger-menu" id="hamburgerMenu">
 
-      <!-- ↓ ADD MENU ITEMS HERE ↓ -->
+      <!-- ↓ ADD / COPY / REMOVE LINK BLOCKS BELOW THIS LINE ↓ -->
 
-      <!-- ↑ ADD MENU ITEMS HERE ↑ -->
+      <!-- ─── LINK START ───────────────────────────────────────
+           LABEL:     what the visitor sees in the menu
+           data-page: which tab this link switches to
+                      (change "home" to any tab's data-page value)
+      ──────────────────────────────────────────────────────── -->
+      <button class="menu-link" data-page="home">Home</button>
+      <!-- ─── LINK END ─────────────────────────────────────── -->
+
+      <!-- ─── LINK START ───────────────────────────────────────
+           LABEL:     what the visitor sees in the menu
+           data-page: which tab this link switches to
+                      (change "events" to any tab's data-page value)
+      ──────────────────────────────────────────────────────── -->
+      <button class="menu-link" data-page="events">Events</button>
+      <!-- ─── LINK END ─────────────────────────────────────── -->
+
+      <!-- ↑ ADD / COPY / REMOVE LINK BLOCKS ABOVE THIS LINE ↑ -->
 
     </div>
 
