@@ -35,7 +35,7 @@
      Option B — use a web address (must start with https://):
        --header-bg: url('https://example.com/photo.jpg');
   ──────────────────────────────────────────────────────────── */
-  --header-bg: url('https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=1600&q=80');
+  --header-bg: url('../images/IMG_3549.jpg');
 
   /* ── HEADER HEIGHT ──────────────────────────────────────────
      How tall the banner image area is.
