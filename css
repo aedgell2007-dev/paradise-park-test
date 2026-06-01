@@ -1,0 +1,418 @@
+/* ================================================================
+   PARADISE PARK — STYLESHEET
+   css/style.css
+
+   This file controls how the website LOOKS:
+     • Colors
+     • Fonts and text sizes
+     • Spacing and layout
+     • The header image
+     • Animations and hover effects
+
+   You do NOT need to edit anything outside of the
+   "EASY CUSTOMIZATION" section at the top to make
+   most common changes.
+================================================================ */
+
+
+/* ================================================================
+   EASY CUSTOMIZATION
+   ──────────────────
+   This block contains the most common things you'll want to change.
+   Everything here uses a "variable" — a named value that gets
+   applied automatically throughout the rest of the stylesheet.
+   Change the value once here, and it updates everywhere.
+================================================================ */
+:root {
+
+  /* ── HEADER BACKGROUND IMAGE ────────────────────────────────
+     Replace the URL inside url('...') with your own image.
+
+     Option A — use an image file you've uploaded to the project:
+       --header-bg: url('../images/my-photo.jpg');
+       (Put the image in the "images" folder first.)
+
+     Option B — use a web address (must start with https://):
+       --header-bg: url('https://example.com/photo.jpg');
+  ──────────────────────────────────────────────────────────── */
+  --header-bg: url('https://images.unsplash.com/photo-1560272564-c83b66b1ad12?w=1600&q=80');
+
+  /* ── HEADER HEIGHT ──────────────────────────────────────────
+     How tall the banner image area is.
+     Increase the number to make it taller, decrease to make shorter.
+  ──────────────────────────────────────────────────────────── */
+  --header-height: 340px;
+
+  /* ── COLORS ─────────────────────────────────────────────────
+     These are the brand colors used across the whole site.
+     You can change any color by replacing the # color code.
+     Tip: Google "color picker" to find hex color codes.
+
+     --color-bark       Main text color (dark brown)
+     --color-moss       Accent color (forest green)
+     --color-sand       Highlight color (warm gold) — used for active tab
+     --color-cream      Main page background (off-white)
+     --color-parchment  Slightly darker background (used in menus)
+     --color-nav-bg     Navigation bar background (dark wood brown)
+     --color-nav-text   Navigation tab text color
+     --color-nav-active Navigation active tab text color
+  ──────────────────────────────────────────────────────────── */
+  --color-bark:       #3b2f1e;
+  --color-moss:       #5a6b3a;
+  --color-sand:       #c9a96e;
+  --color-cream:      #f5f0e8;
+  --color-parchment:  #ede4d3;
+  --color-nav-bg:     #2e2416;
+  --color-nav-text:   #f5f0e8;
+  --color-nav-active: #c9a96e;
+
+  /* ── FONTS ──────────────────────────────────────────────────
+     --font-display   Used for the big "Paradise Park" header title
+     --font-body      Used for all other text on the site
+
+     To change fonts:
+       1. Go to fonts.google.com
+       2. Pick a font and click "Get font" then "Get embed code"
+       3. Replace the <link> tag in index.html <head> with the new one
+       4. Update the font name here to match
+  ──────────────────────────────────────────────────────────── */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Lato', Helvetica, sans-serif;
+
+  /* ── NAVIGATION BAR HEIGHT ──────────────────────────────────
+     How tall the tab bar is. Usually fine to leave as-is.
+  ──────────────────────────────────────────────────────────── */
+  --nav-height: 52px;
+
+}
+/* END: EASY CUSTOMIZATION */
+
+
+/* ================================================================
+   RESET & BASE STYLES
+   ────────────────────
+   These rules remove default browser styling so the site looks
+   consistent across Chrome, Firefox, Safari, Edge, etc.
+   Do not change anything in this section.
+================================================================ */
+*, *::before, *::after {
+  box-sizing: border-box; /* Makes sizing calculations predictable */
+  margin: 0;              /* Removes default spacing */
+  padding: 0;             /* Removes default inner spacing */
+}
+
+html, body {
+  height: 100%; /* Allows the page to fill the full screen height */
+}
+
+body {
+  font-family: var(--font-body);       /* Applies the body font everywhere */
+  background-color: var(--color-cream);/* Sets the page background color */
+  color: var(--color-bark);            /* Sets the default text color */
+  line-height: 1.6;                    /* Sets comfortable line spacing */
+}
+/* END: RESET & BASE STYLES */
+
+
+/* ================================================================
+   HEADER
+   ───────
+   The large banner at the top of the page with the background
+   image and "Paradise Park" title text.
+
+   To adjust the image, title size, or overlay darkness,
+   change the variables in the EASY CUSTOMIZATION section above,
+   or edit the specific properties noted below.
+================================================================ */
+
+/* The overall header container */
+.site-header {
+  position: relative;                  /* Allows children to be positioned inside it */
+  height: var(--header-height);        /* Uses the height set in EASY CUSTOMIZATION */
+  background-image: var(--header-bg);  /* Uses the image set in EASY CUSTOMIZATION */
+  background-size: cover;              /* Makes the image fill the full header area */
+  background-position: center;         /* Centers the image (change to "top" or "bottom" to reframe) */
+  background-repeat: no-repeat;        /* Prevents the image from tiling/repeating */
+  display: flex;                       /* Enables centering of the title */
+  align-items: center;                 /* Centers the title vertically */
+  justify-content: center;             /* Centers the title horizontally */
+}
+
+/* The semi-transparent dark layer over the image.
+   This ensures the white title text is always readable.
+   To make it darker: increase the last number in rgba() values (max 1).
+   To make it lighter: decrease those numbers. */
+.header-overlay {
+  position: absolute;
+  inset: 0; /* Stretches to fill the entire header */
+  background: linear-gradient(
+    to bottom,
+    rgba(30, 20, 8, 0.35) 0%,   /* Top of header — less dark */
+    rgba(30, 20, 8, 0.55) 100%  /* Bottom of header — more dark */
+  );
+}
+
+/* The "Paradise Park" title text */
+.site-title {
+  position: relative;            /* Sits above the overlay layer */
+  z-index: 1;
+  font-family: var(--font-display);  /* Uses the display font */
+  /* clamp() makes the font scale automatically with screen width:
+     minimum size, preferred size, maximum size */
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 900;              /* Extra bold */
+  color: #ffffff;                /* White text */
+  text-align: center;
+  letter-spacing: 0.04em;        /* Slight spacing between letters */
+  /* text-shadow adds a subtle drop shadow for depth */
+  text-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.4),
+    0 0 40px rgba(201, 169, 110, 0.3);
+}
+/* END: HEADER */
+
+
+/* ================================================================
+   NAVIGATION BAR
+   ───────────────
+   The dark horizontal bar below the header containing the page tabs.
+   It "sticks" to the top of the screen when the user scrolls down.
+================================================================ */
+
+/* The bar itself */
+.site-nav {
+  background-color: var(--color-nav-bg); /* Dark wood color from EASY CUSTOMIZATION */
+  height: var(--nav-height);             /* Height from EASY CUSTOMIZATION */
+  position: sticky;  /* Sticks to the top when scrolling */
+  top: 0;
+  z-index: 100;      /* Keeps nav on top of all other elements */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35); /* Drop shadow below the bar */
+}
+
+/* The inner wrapper that holds the tab buttons */
+.nav-inner {
+  display: flex;        /* Lines tabs up side by side */
+  align-items: stretch; /* Makes tabs fill the full bar height */
+  height: 100%;
+  /* Optional: to center the tabs, uncomment these two lines:
+  max-width: 900px;
+  margin: 0 auto;       */
+}
+
+/* Individual tab buttons */
+.nav-tab {
+  background: none;                        /* No background on the button itself */
+  border: none;                            /* No border */
+  color: var(--color-nav-text);            /* Text color from EASY CUSTOMIZATION */
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;                   /* Spaced-out capital letters */
+  text-transform: uppercase;               /* Forces text to ALL CAPS */
+  padding: 0 28px;                         /* Left/right space inside each tab */
+  cursor: pointer;                         /* Shows hand cursor on hover */
+  position: relative;                      /* Needed for the underline indicator */
+  transition: color 0.2s ease;            /* Smooth color change on hover */
+  opacity: 0.75;                           /* Slightly faded when not active */
+}
+
+/* Tab appearance when hovered over */
+.nav-tab:hover {
+  opacity: 1;
+  color: var(--color-sand); /* Gold color from EASY CUSTOMIZATION */
+}
+
+/* Tab appearance when it is the currently selected tab */
+.nav-tab.active {
+  opacity: 1;
+  color: var(--color-sand);
+}
+
+/* The gold underline that appears under the active tab */
+.nav-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 16px;
+  right: 16px;
+  height: 3px;
+  background-color: var(--color-sand);
+  border-radius: 3px 3px 0 0; /* Slightly rounded top corners */
+}
+/* END: NAVIGATION BAR */
+
+
+/* ================================================================
+   PAGES
+   ──────
+   Each tab links to a "page" section. Only one page is shown
+   at a time. The JavaScript in js/main.js handles the switching.
+
+   Pages are hidden by default (display: none) and made visible
+   by adding the class "active" (display: block).
+================================================================ */
+
+/* Base style for all page sections — hidden by default */
+.page {
+  display: none; /* Hidden until made active by JavaScript */
+  /* Sets a minimum height so short pages don't look odd */
+  min-height: calc(100vh - var(--header-height) - var(--nav-height));
+  background-color: var(--color-cream);
+}
+
+/* The currently visible page */
+.page.active {
+  display: block;
+}
+
+/* The content wrapper inside each page.
+   Controls the max width and padding of page content. */
+.page-content {
+  max-width: 1100px; /* Content won't stretch wider than this */
+  margin: 0 auto;    /* Centers the content block on the page */
+  padding: 40px 24px;/* Space above/below and left/right of content */
+}
+/* END: PAGES */
+
+
+/* ================================================================
+   HAMBURGER MENU
+   ───────────────
+   The ☰ three-line button in the top-left of the Home page,
+   and the dropdown panel it reveals when clicked.
+================================================================ */
+
+/* The wrapper that positions the button and dropdown together */
+.hamburger-wrap {
+  position: relative;         /* Lets the dropdown position itself relative to the button */
+  display: inline-block;
+  margin: 20px 0 0 20px;     /* Space from the top and left edges of the page */
+}
+
+/* ── The ☰ button ── */
+.hamburger-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 34px;                /* Button width */
+  height: 24px;               /* Button height — affects spacing between lines */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+  position: relative;
+}
+
+/* Each of the three horizontal lines in the ☰ button */
+.hamburger-btn span {
+  display: block;
+  width: 100%;
+  height: 3px;                             /* Thickness of each line */
+  background-color: var(--color-bark);     /* Line color — dark brown */
+  border-radius: 3px;                      /* Slightly rounded line ends */
+  /* Smooth animation when lines transform into an X */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transform-origin: center;
+}
+
+/* ── Animation: ☰ transforms into ✕ when menu is open ── */
+
+/* Top line rotates down-right to form the top of the X */
+.hamburger-btn.open span:nth-child(1) {
+  transform: translateY(10.5px) rotate(45deg);
+}
+
+/* Middle line fades and shrinks away */
+.hamburger-btn.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+/* Bottom line rotates up-right to form the bottom of the X */
+.hamburger-btn.open span:nth-child(3) {
+  transform: translateY(-10.5px) rotate(-45deg);
+}
+
+/* ── The dropdown panel ── */
+.hamburger-menu {
+  display: none;                               /* Hidden until opened */
+  position: absolute;                          /* Positioned relative to .hamburger-wrap */
+  top: calc(100% + 10px);                      /* Appears just below the button */
+  left: 0;
+  min-width: 220px;                            /* Minimum panel width */
+  background-color: var(--color-parchment);   /* Warm cream background */
+  border: 1px solid rgba(59, 47, 30, 0.15);   /* Subtle border */
+  border-radius: 6px;                          /* Rounded corners */
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12); /* Soft drop shadow */
+  z-index: 200;                                /* Appears on top of everything */
+  overflow: hidden;                            /* Clips rounded corners cleanly */
+}
+
+/* The panel becomes visible when JavaScript adds the "open" class */
+.hamburger-menu.open {
+  display: block;
+}
+
+/* Styling for any link <a> or button <button> added inside the menu */
+.hamburger-menu a,
+.hamburger-menu button {
+  display: block;
+  width: 100%;
+  padding: 14px 20px;                         /* Comfortable tap/click area */
+  text-align: left;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-bark);
+  text-decoration: none;                       /* Removes underline from links */
+  background: none;
+  border: none;
+  border-bottom: 1px solid rgba(59, 47, 30, 0.08); /* Thin divider between items */
+  cursor: pointer;
+  transition: background 0.15s ease;           /* Smooth hover highlight */
+}
+
+/* Removes the bottom divider from the last menu item */
+.hamburger-menu a:last-child,
+.hamburger-menu button:last-child {
+  border-bottom: none;
+}
+
+/* Highlights a menu item when hovered */
+.hamburger-menu a:hover,
+.hamburger-menu button:hover {
+  background-color: rgba(201, 169, 110, 0.2); /* Subtle gold highlight */
+}
+/* END: HAMBURGER MENU */
+
+
+/* ================================================================
+   RESPONSIVE DESIGN (MOBILE)
+   ───────────────────────────
+   These rules automatically adjust the layout for smaller screens
+   (phones and small tablets). They only apply when the screen
+   width is 600px or less.
+
+   You generally don't need to edit this section — it handles
+   most common screen sizes automatically.
+================================================================ */
+@media (max-width: 600px) {
+
+  :root {
+    --header-height: 220px; /* Shorter header on small screens */
+    --nav-height: 46px;     /* Slightly shorter nav bar */
+  }
+
+  /* Smaller tab text on phones */
+  .nav-tab {
+    padding: 0 16px;
+    font-size: 0.85rem;
+  }
+
+  /* Slightly tighter hamburger button placement on phones */
+  .hamburger-wrap {
+    margin: 16px 0 0 14px;
+  }
+
+}
+/* END: RESPONSIVE DESIGN */
