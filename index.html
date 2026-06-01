@@ -142,21 +142,22 @@
        Clicking it opens a dropdown panel with navigation links.
 
        HOW THESE LINKS WORK:
-         Each link uses data-page="..." to switch to a tab,
-         exactly the same way the nav bar tabs work.
-         The label between > and </button> is what the visitor sees.
+         Each link uses data-page="..." to open a hidden page.
+         Hidden pages exist in the code but have NO tab in the
+         nav bar — they are only reachable through this menu.
+         The label between > and </button> is what visitors see.
 
        HOW TO ADD A NEW LINK:
-         Copy one entire block between the dashed copy lines below
-         and paste it directly after the last link block.
-         Then change:
-           • data-page="..."  → the page id you want to go to
-                                 (must match a tab's data-page value)
-           • the label text   → whatever the visitor should see
+         1. Copy one full LINK START → LINK END block below
+            and paste it after the last link.
+         2. Change data-page="..." to a short name (no spaces)
+            matching your hidden page's id (e.g. "hours").
+         3. Change the label text to what visitors should see.
+         4. Scroll down to the HIDDEN PAGES section and add a
+            matching hidden page block there.
 
        HOW TO REMOVE A LINK:
-         Delete everything from one ─── LINK START ─── to its
-         matching ─── LINK END ─── (including both comment lines).
+         Delete from ─── LINK START ─── to ─── LINK END ───.
 
        HOW TO REORDER LINKS:
          Cut and paste full link blocks up or down.
@@ -177,21 +178,21 @@
 
       <!-- ↓ ADD / COPY / REMOVE LINK BLOCKS BELOW THIS LINE ↓ -->
 
-      <!-- ─── LINK START ───────────────────────────────────────
-           LABEL:     what the visitor sees in the menu
-           data-page: which tab this link switches to
-                      (change "home" to any tab's data-page value)
-      ──────────────────────────────────────────────────────── -->
-      <button class="menu-link" data-page="home">Home</button>
-      <!-- ─── LINK END ─────────────────────────────────────── -->
+      <!-- ─── LINK START ──────────────────────────────────────────
+           LABEL:     what the visitor sees in the menu → "Hours & Pricing"
+           data-page: must match a hidden page id below → "hours"
+           TO DUPLICATE: copy from LINK START to LINK END and paste below
+      ─────────────────────────────────────────────────────────── -->
+      <button class="menu-link" data-page="hours">Hours &amp; Pricing</button>
+      <!-- ─── LINK END ────────────────────────────────────────── -->
 
-      <!-- ─── LINK START ───────────────────────────────────────
-           LABEL:     what the visitor sees in the menu
-           data-page: which tab this link switches to
-                      (change "events" to any tab's data-page value)
-      ──────────────────────────────────────────────────────── -->
-      <button class="menu-link" data-page="events">Events</button>
-      <!-- ─── LINK END ─────────────────────────────────────── -->
+      <!-- ─── LINK START ──────────────────────────────────────────
+           LABEL:     what the visitor sees in the menu → "Contact Us"
+           data-page: must match a hidden page id below → "contact"
+           TO DUPLICATE: copy from LINK START to LINK END and paste below
+      ─────────────────────────────────────────────────────────── -->
+      <button class="menu-link" data-page="contact">Contact Us</button>
+      <!-- ─── LINK END ────────────────────────────────────────── -->
 
       <!-- ↑ ADD / COPY / REMOVE LINK BLOCKS ABOVE THIS LINE ↑ -->
 
@@ -251,26 +252,84 @@
 
 <!--
   ============================================================
-  HOW TO ADD A NEW PAGE
-  ──────────────────────
-  1. Add a new tab button in the nav bar above (Section 2).
-     Example: <button class="nav-tab" data-page="gallery">Gallery</button>
+  HOW TO ADD A NEW PAGE (nav bar tab)
+  ──────────────────────────────────────────────────────────
+  1. Add a tab button in the nav bar above (Section 2):
+       <button class="nav-tab" data-page="gallery">Gallery</button>
 
   2. Copy the block below and paste it above this comment.
-     Change "pagename" in BOTH places to match your tab's data-page value.
+     Change "pagename" in BOTH places to match your data-page value.
 
   <main id="page-pagename" class="page">
     <div class="page-content">
-
       <!-- ↓ ADD YOUR CONTENT HERE ↓ -->
-
       <!-- ↑ ADD YOUR CONTENT HERE ↑ -->
-
     </div>
   </main>
 
-  That's all — the JavaScript handles the rest automatically.
+  The JavaScript handles the tab switching automatically.
   ============================================================
+-->
+
+
+<!-- ============================================================
+     HIDDEN PAGES
+     ─────────────
+     These pages are only reachable through the hamburger menu.
+     They do NOT appear as tabs in the navigation bar.
+
+     Each hidden page works exactly like a normal page —
+     it just has no matching button in the nav bar.
+
+     HOW TO ADD A NEW HIDDEN PAGE:
+       1. Add a menu link in the hamburger menu above:
+            <button class="menu-link" data-page="hours">Hours &amp; Pricing</button>
+       2. Copy one full hidden page block below (from
+          "HIDDEN PAGE START" to "HIDDEN PAGE END") and
+          paste it before the closing comment below.
+       3. Change the id="page-..." in BOTH the comment AND the
+          <main> tag to match your new link's data-page value.
+       4. Add your content between the content markers.
+
+     HOW TO REMOVE A HIDDEN PAGE:
+       Delete from "HIDDEN PAGE START" to "HIDDEN PAGE END"
+       and remove its matching link from the hamburger menu.
+============================================================ -->
+
+<!-- ═══ HIDDEN PAGE START — id: hours ════════════════════════
+     Linked from hamburger menu item: "Hours & Pricing"
+     To rename: change data-page in the menu link AND id here.
+════════════════════════════════════════════════════════════ -->
+<main id="page-hours" class="page hidden-page">
+  <div class="page-content">
+
+    <!-- ↓ ADD HOURS & PRICING CONTENT HERE ↓ -->
+
+    <!-- ↑ ADD HOURS & PRICING CONTENT HERE ↑ -->
+
+  </div>
+</main>
+<!-- ═══ HIDDEN PAGE END — id: hours ═══════════════════════ -->
+
+
+<!-- ═══ HIDDEN PAGE START — id: contact ══════════════════════
+     Linked from hamburger menu item: "Contact Us"
+     To rename: change data-page in the menu link AND id here.
+════════════════════════════════════════════════════════════ -->
+<main id="page-contact" class="page hidden-page">
+  <div class="page-content">
+
+    <!-- ↓ ADD CONTACT PAGE CONTENT HERE ↓ -->
+
+    <!-- ↑ ADD CONTACT PAGE CONTENT HERE ↑ -->
+
+  </div>
+</main>
+<!-- ═══ HIDDEN PAGE END — id: contact ═════════════════════ -->
+
+<!--
+  ↑ PASTE NEW HIDDEN PAGE BLOCKS ABOVE THIS LINE ↑
+  (Copy from "HIDDEN PAGE START" to "HIDDEN PAGE END")
 -->
 
 
